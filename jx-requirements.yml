@@ -1,35 +1,91 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  environmentGitPublic: false
-  project: ""
+  clusterName: ray-gke
+  devEnvApprovers:
+  - craft-de-jet
+  environmentGitOwner: craft-de-jet
+  environmentGitPublic: true
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  project: tough-chassis-272102
   provider: gke
-  zone: ""
-gitops: true
+  registry: gcr.io
+  vaultName: ray-gke
+  vaultSAName: ray-gke-vt
+  zone: us-central1-a
 environments:
-- key: dev
-- key: staging
-- key: production
+- ingress:
+    domain: 35.226.111.124.nip.io
+    externalDNS: false
+    namespaceSubDomain: -jx.
+    tls:
+      email: ""
+      enabled: false
+      production: true
+  key: dev
+  repository: environment-ray-gke-dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+  repository: environment-ray-gke-staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+  repository: environment-ray-gke-production
+gitops: true
 ingress:
-  domain: ""
+  domain: 35.226.111.124.nip.io
   externalDNS: false
+  namespaceSubDomain: -jx.
   tls:
     email: ""
     enabled: false
-    production: false
+    production: true
 kaniko: true
-secretStorage: local
+repository: nexus
+secretStorage: vault
 storage:
+  backup:
+    enabled: true
+    url: gs://backup-ray-gke-c10616848845
   logs:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://logs-ray-gke-c10616848845
   reports:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://reports-ray-gke-c10616848845
   repository:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://repository-ray-gke-c10616848845
+vault:
+  bucket: vault-ray-gke-c10616848845
+  key: crypto-key-ray-gke-c10616848845
+  keyring: keyring-ray-gke-c10616848845
+  name: ray-gke
+  serviceAccount: ray-gke-vt
+velero:
+  namespace: velero
+  schedule: 0 * * * *
+  serviceAccount: ray-gke-vo
+  ttl: 720h0m0s
 versionStream:
-  ref: "master"
+  ref: v1.0.489
   url: https://github.com/jenkins-x/jenkins-x-versions.git
 webhook: lighthouse

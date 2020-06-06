@@ -1,0 +1,10 @@
+adminUser:
+  password: vault:ray-gke/adminUser:password
+  username: admin
+enableDocker: false
+pipelineUser:
+  email: craft.de.jet@gmail.com
+  token: vault:ray-gke/pipelineUser:token
+  username: craft-de-jet
+prow:
+  hmacToken: vault:ray-gke/prow:hmacToken
