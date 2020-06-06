@@ -1,0 +1,7 @@
+dependencies:
+- host: github.com
+  owner: craft-de-jet
+  repo: helo-spring-gke
+  url: https://github.com/craft-de-jet/helo-spring-gke.git
+  version: ""
+  versionURL: ""

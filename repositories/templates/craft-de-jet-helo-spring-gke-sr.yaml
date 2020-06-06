@@ -1,0 +1,21 @@
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  creationTimestamp: null
+  labels:
+    owner: craft-de-jet
+    provider: github
+    repository: helo-spring-gke
+  name: craft-de-jet-helo-spring-gke
+spec:
+  description: Imported application for craft-de-jet/helo-spring-gke
+  httpCloneURL: https://github.com/craft-de-jet/helo-spring-gke.git
+  org: craft-de-jet
+  provider: https://github.com
+  providerKind: github
+  providerName: github
+  repo: helo-spring-gke
+  scheduler:
+    kind: ""
+    name: ""
+  url: https://github.com/craft-de-jet/helo-spring-gke.git
